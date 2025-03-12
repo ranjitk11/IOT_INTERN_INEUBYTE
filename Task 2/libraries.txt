@@ -1,0 +1,6 @@
+#library list as per  requirement in workwi:
+DHT sensor library
+DHT22
+ThingSpeak
+Blynk
+AccelStepper
