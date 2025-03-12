@@ -1,1 +1,52 @@
+#define BLYNK_TEMPLATE_ID "TMPL3tQ7zDdb"
+#define BLYNK_TEMPLATE_NAME "ESP32 Smart Control"
+#define BLYNK_AUTH_TOKEN "Bm9Guc6CgnqHa35_u18a0-5CTJ_bYr3M"
 
+#include <WiFi.h>
+#include <BlynkSimpleEsp32.h>
+#include <DHT.h>
+#include <AccelStepper.h>  // Library for controlling stepper motors
+
+#define DHTPIN 15       // Pin for DHT22 (simulated)
+#define DHTTYPE DHT22   // DHT22 sensor type
+#define LED_PIN 22      // LED pin
+
+// Define the pins for the stepper motor
+#define IN1 18
+#define IN2 19
+#define IN3 21
+#define IN4 22
+
+DHT dht(DHTPIN, DHTTYPE);
+AccelStepper stepper(AccelStepper::FULL4WIRE, IN1, IN2, IN3, IN4); // Initialize stepper
+
+char auth[] = BLYNK_AUTH_TOKEN;  
+char ssid[] = "Wokwi-GUEST";     
+char pass[] = "";                
+
+bool automaticMode = true;
+bool motorStatus = false;
+bool ledStatus = false;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(LED_PIN, OUTPUT);
+  dht.begin();
+}
+
+void loop() {
+  float temp = 24.00;      // Simulated Temperature
+  float humidity = 40.00;  // Simulated Humidity
+
+  Serial.print("Temp: ");
+  Serial.print(temp);
+  Serial.print(" °C, Humidity: ");
+  Serial.print(humidity);
+  Serial.println(" %");
+
+  digitalWrite(LED_PIN, HIGH);  // Simulate LED turning on
+  delay(1000);
+  digitalWrite(LED_PIN, LOW);   // Simulate LED turning off
+
+  delay(2000);  // Delay to match real hardware behavior
+} 
